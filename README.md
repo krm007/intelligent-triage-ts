@@ -1,3 +1,37 @@
+**创建项目步骤：**
+
+1、参照antd网页版官网中在ts中安装的教程步骤，2019/2/18更新的版本中已支持react-typescript脚手架，所以不用再单独创建；
+
+2、高级配置中最后不设置自定义主题，否则会报less错误，目前尚无解决办法；
+
+3、创建好项目后会提示缺少tslint配置，需要全局安装
+
+    yarn global add tslint
+    tslint --init
+    yarn add tslint tslint-react tslint-config-prettier
+    
+  会自动生成tslint.json文件，添加如下：
+  
+    {
+      "defaultSeverity": "error",
+      "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+      "jsRules": {},
+      "rules": {
+        "no-console": false,
+        "jsx-no-lambda": false,
+        "ordered-imports": false
+      },
+      "rulesDirectory": []
+    }
+    
+ 至此，配置好tslint文件；
+ 
+ 4、参照antd-mobile中规定index.html文件格式，设置按需加载引入，将config-overrides.js中的library库修改；
+     
+     libraryName: "antd-mobile",
+    
+**--------------------------------分割线------------------------------**
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
