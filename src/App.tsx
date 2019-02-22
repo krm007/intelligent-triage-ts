@@ -1,17 +1,26 @@
-import { Icon, NavBar,Button } from 'antd-mobile';
-import React, { Component } from 'react';
-// import './App.css';
+import React, { Component } from "react";
+import './App.css';
+import { HashRouter } from "react-router-dom";
+import { renderRoutes } from "react-router-config";
+import routerConfigs from "./router/routerConfigs";
+import JssProvider from "react-jss/lib/JssProvider";
+import createGenerateClassName from "@material-ui/core/styles/createGenerateClassName";
+import jssPreset from "@material-ui/core/styles/jssPreset";
+import { create } from "jss";
+
+/**
+ * 使用material-ui的jss in js 解决方案
+ */
+const generateClassName = createGenerateClassName();
+const jss = create(jssPreset());
 
 class App extends Component {
   public render() {
     return (
       <div className="App">
-        <NavBar
-            mode="light"
-            icon={<Icon type="cross" />}
-            onLeftClick={() => console.log('onLeftClick')}
-        >智能分诊</NavBar>
-        <Button type="primary">确定</Button>
+        <JssProvider jss={jss} generateClassName={generateClassName}>
+          <HashRouter>{renderRoutes(routerConfigs)}</HashRouter>
+        </JssProvider>
       </div>
     );
   }
