@@ -11,7 +11,9 @@ const styles = (theme: Theme) =>
   });
 
 interface Iprops extends WithStyles<typeof styles> {
-    iconType:any
+    iconType?:any;
+    title:string;
+    click?:any
 }
 
 class Nav extends React.Component<Iprops> {
@@ -22,9 +24,9 @@ class Nav extends React.Component<Iprops> {
         <NavBar
           mode="light"
           icon={this.props.iconType}
-          onLeftClick={() => console.log("onLeftClick")}
+          onLeftClick={this.props.click}
         >
-          智能分诊
+          {this.props.title}
         </NavBar>
       </div>
     );

@@ -1,1 +1,2 @@
-export {MyFeatureList} from "./featureListByPart"
+export {MyFeatureList} from "./featureListByPart";
+export {BgWordsAndSymptoms} from "./bgAndSymptoms"

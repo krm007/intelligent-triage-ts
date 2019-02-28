@@ -4,13 +4,15 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "mobx-react";
-import {MyFeatureList} from "./mobx/allExport"
+import { BgWordsAndSymptoms, MyFeatureList } from "./mobx/allExport";
 
 /** 创建实例 */
-const applicationState=new MyFeatureList();
-const state={
-    store:applicationState
-}
+const applicationState = new MyFeatureList();
+const bgWordsAndSymptoms = new BgWordsAndSymptoms();
+const state = {
+  store: applicationState,
+  changeState: bgWordsAndSymptoms
+};
 ReactDOM.render(
   <Provider {...state}>
     <App />
