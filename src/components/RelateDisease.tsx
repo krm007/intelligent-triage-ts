@@ -44,7 +44,7 @@ const styles = (theme: Theme) =>
     },
     subTitle: {
       color: "#888",
-      fontsize: "14px",
+      fontsize: "18px",
       padding: "15px 0 9px 15px"
     }
   });
@@ -69,13 +69,12 @@ class RelateDisease extends React.Component<Iprops> {
 
   /** 相关病症的tag回调 */
   public relateTagsChange = (selected: boolean, relateTag: any) => {
-    console.log(selected, relateTag);
+    // console.log(selected, relateTag);
     if (selected === true) {
       this.props.changeState.addData(relateTag);
     } else if (selected === false) {
       this.remove(this.props.changeState.myData, relateTag);
     }
-    // this.props.changeState.changeBgWords(this.data);
   };
   public render() {
     const { classes } = this.props;
@@ -125,35 +124,46 @@ class RelateDisease extends React.Component<Iprops> {
 
           {this.props.changeState.symptomsList ? (
             <div>
-              <div className={classes.subTitle}>相关症状</div>
-              {this.props.changeState.symptomsList.map((item: any, i: any) => {
-                return (
-                  <Tag
-                    key={i}
-                    onChange={(selected: boolean) => {
-                      this.relateTagsChange(selected, item);
-                    }}
-                    style={{ marginLeft: "9px", marginBottom: "9px" }}
-                  >
-                    {item}
-                  </Tag>
-                );
-              })}
+              <div className={classes.subTitle}>相关症状&nbsp;:</div>
+              <WingBlank size="lg">
+                <div style={{ backgroundColor: "rgb(245,245,249)" }}>
+                  {this.props.changeState.symptomsList.map(
+                    (item: any, i: any) => {
+                      return (
+                        <Tag
+                          key={i}
+                          onChange={(selected: boolean) => {
+                            this.relateTagsChange(selected, item);
+                          }}
+                          style={{
+                            marginLeft: "9px",
+                            marginBottom: "9px",
+                            marginTop: "9px"
+                          }}
+                        >
+                          {item}
+                        </Tag>
+                      );
+                    }
+                  )}
+                </div>
+              </WingBlank>
             </div>
-          ) : null}
-
-          <WingBlank>
+          ) : (
+            <div style={{color: "#888",textAlign:"center" }}>暂无相关症状</div>
+          )}
+          <br />
+          <WingBlank size="lg">
             <Button
               type="primary"
               size={"small"}
               onClick={() => {
-                  // this.props.changeState.getResult();
                 this.props.history.push("/go");
               }}
             >
               确定
             </Button>
-            <WhiteSpace />
+            <WhiteSpace size="lg" />
           </WingBlank>
         </div>
       </div>

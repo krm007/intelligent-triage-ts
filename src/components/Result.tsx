@@ -7,7 +7,6 @@ import Bg from "../views/Bg";
 import { RouteComponentProps } from "react-router-dom";
 import { observer, inject } from "mobx-react";
 import { BgWordsAndSymptoms } from "../mobx/bgAndSymptoms";
-import { AssignmentReturn } from "@material-ui/icons";
 
 const styles = (theme: Theme) =>
   createStyles({
