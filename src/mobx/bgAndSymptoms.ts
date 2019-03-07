@@ -36,7 +36,7 @@ export class BgWordsAndSymptoms {
   /** 通过头部和病症获取相关症状 */
   @action public getSymptoms() {
     service
-      .get("/boco-diagnose/getLinkedFeature", {
+      .get("/getLinkedFeature", {
         params: { part: this.part, features: this.myData[0] }
       })
       .then((value: any) => {
@@ -52,7 +52,7 @@ export class BgWordsAndSymptoms {
   @action public getResult() {
     const params: string = this.myData.join(",");
     service
-      .get("/boco-diagnose/getDiseaseResult", {
+      .get("/getDiseaseResult", {
         params: { part: this.part, features: params }
       })
       .then((value: any) => {

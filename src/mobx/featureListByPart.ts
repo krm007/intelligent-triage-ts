@@ -10,7 +10,7 @@ export class MyFeatureList {
   }
 
   @action public async getList() {
-    service.get("/boco-diagnose/getFeatureListByPart").then((value: any) => {
+    service.get("/getFeatureListByPart").then((value: any) => {
       runInAction(() => {
         this.allList = value.data.data;
       });
