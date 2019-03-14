@@ -85,7 +85,7 @@ class Result extends React.Component<Iprops> {
           iconType={<Icon type="left" />}
           title={"诊断结果"}
           click={() => {
-            this.props.history.push({ pathname: "/" });
+            this.props.history.replace("/");
           }}
         />
         {this.props.changeState ? (
