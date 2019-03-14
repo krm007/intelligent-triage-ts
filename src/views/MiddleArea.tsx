@@ -9,7 +9,14 @@ import { RouteComponentProps, withRouter } from "react-router-dom";
 
 const styles = (theme: Theme) =>
   createStyles({
-    root: {}
+    root: {},
+    tagDiv: {
+      display: "flex",
+      backgroundColor: "#fff",
+      paddingTop: "9px",
+      flexDirection: "row",
+      flexWrap: "wrap"
+    }
   });
 
 interface Iprops extends WithStyles<typeof styles>, RouteComponentProps {
@@ -36,10 +43,10 @@ class MiddleArea extends React.Component<Iprops> {
     tabTitle: string,
     currentTag: string
   ) => {
-    // console.log(selected, tabTitle, currentTag);
-    this.props.changeState.getPart(tabTitle);
-    this.props.changeState.addData(currentTag);
-    this.props.history.push("/next");
+    this.props.history.push({
+      pathname: "/next",
+      state: { part: tabTitle, features: currentTag }
+    });
   };
 
   /** tab的内容区域 */
@@ -64,20 +71,7 @@ class MiddleArea extends React.Component<Iprops> {
         }
       };
 
-      return (
-        <div
-          style={{
-            display: "flex",
-            backgroundColor: "#fff",
-            paddingTop: "9px",
-            flexDirection: "row",
-            flexWrap: "wrap"
-          }}
-          key={index}
-        >
-          {doubleArray()}
-        </div>
-      );
+      return <div key={index}>{doubleArray()}</div>;
     });
   };
 
@@ -87,7 +81,13 @@ class MiddleArea extends React.Component<Iprops> {
       <div className={this.props.middleStyle}>
         <WhiteSpace size="lg" />
         <NoticeBar mode="closable">请选择部位和相应的病症</NoticeBar>
-        <div style={{ height: "72vh" }}>
+        <div
+          style={{
+            height: "72vh",
+            overflow: "scroll",
+            WebkitOverflowScrolling: "touch"
+          }}
+        >
           <WhiteSpace />
           <Tabs
             tabs={this.props.store.titleList}

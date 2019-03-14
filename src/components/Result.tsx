@@ -71,19 +71,17 @@ class Result extends React.Component<Iprops> {
     this.props.changeState.getResult();
   }
 
+  public componentDidMount(): void {
+    window.addEventListener("popstate", state => {
+      this.props.history.replace("/");
+    });
+  }
+
   public render() {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <Nav
-          iconType={<Icon type="left" />}
-          title={"诊断结果"}
-          click={() => {
-            this.props.changeState.part = " ";
-            this.props.changeState.myData = [];
-            this.props.history.push("/");
-          }}
-        />
+        <Nav iconType={<Icon type="left" />} title={"诊断结果"} />
         {this.props.changeState ? (
           this.props.changeState.myData ? (
             <Bg

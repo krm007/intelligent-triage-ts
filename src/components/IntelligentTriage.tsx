@@ -25,7 +25,10 @@ const styles = (theme: Theme) =>
       position: "absolute",
       left: 0,
       top: "22vh",
-      backgroundColor: "white"
+      backgroundColor: "white",
+      "& .am-tabs": {
+        height: "calc(100%+1%)"
+      }
     }
   });
 

@@ -7,7 +7,8 @@
     "jsx-no-lambda": false,
     "ordered-imports": false,
     "object-literal-sort-keys": false,
-    "no-unused-expression": false
+    "no-unused-expression": false,
+    "no-empty": false
   },
   "rulesDirectory": []
 }

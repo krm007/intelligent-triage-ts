@@ -3,10 +3,9 @@ import { WithStyles } from "@material-ui/core/styles/withStyles";
 import * as React from "react";
 import Nav from "../views/Nav";
 import Bg from "../views/Bg";
-import { Button, Icon, WhiteSpace, WingBlank } from "antd-mobile";
-import { Tag } from "antd-mobile";
+import { Button, Icon, Tag, WhiteSpace, WingBlank } from "antd-mobile";
 import { RouteComponentProps } from "react-router-dom";
-import { observer, inject } from "mobx-react";
+import { inject, observer } from "mobx-react";
 import { BgWordsAndSymptoms } from "../mobx/bgAndSymptoms";
 
 const styles = (theme: Theme) =>
@@ -56,10 +55,15 @@ interface Iprops extends WithStyles<typeof styles>, RouteComponentProps {
 @observer
 class RelateDisease extends React.Component<Iprops> {
   public componentWillMount(): void {
+    // console.log(this.props.location.state)
+    if (this.props.location.state) {
+      this.props.changeState.part = " ";
+      this.props.changeState.myData = [];
+      this.props.changeState.getPart(this.props.location.state.part);
+      this.props.changeState.addData(this.props.location.state.features);
+    }
     this.props.changeState.getSymptoms();
   }
-
-  /** 删除数组元素 */
   public remove = (array: any[], val: any) => {
     const index = array.indexOf(val);
     if (index > -1) {
@@ -80,15 +84,7 @@ class RelateDisease extends React.Component<Iprops> {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <Nav
-          iconType={<Icon type="left" />}
-          title={"智能分诊"}
-          click={() => {
-            this.props.changeState.part = " ";
-            this.props.changeState.myData = [];
-            this.props.history.push("/");
-          }}
-        />
+        <Nav iconType={<Icon type="left" />} title={"智能分诊"} />
         {this.props.changeState ? (
           this.props.changeState.myData ? (
             <Bg
@@ -150,7 +146,9 @@ class RelateDisease extends React.Component<Iprops> {
               </WingBlank>
             </div>
           ) : (
-            <div style={{color: "#888",textAlign:"center" }}>暂无相关症状</div>
+            <div style={{ color: "#888", textAlign: "center" }}>
+              暂无相关症状
+            </div>
           )}
           <br />
           <WingBlank size="lg">
@@ -158,7 +156,7 @@ class RelateDisease extends React.Component<Iprops> {
               type="primary"
               size={"small"}
               onClick={() => {
-                this.props.history.push("/go");
+                this.props.history.push({ pathname: "/go" });
               }}
             >
               确定
