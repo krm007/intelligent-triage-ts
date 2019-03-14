@@ -81,7 +81,13 @@ class Result extends React.Component<Iprops> {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <Nav iconType={<Icon type="left" />} title={"诊断结果"} />
+        <Nav
+          iconType={<Icon type="left" />}
+          title={"诊断结果"}
+          click={() => {
+            this.props.history.push({ pathname: "/" });
+          }}
+        />
         {this.props.changeState ? (
           this.props.changeState.myData ? (
             <Bg

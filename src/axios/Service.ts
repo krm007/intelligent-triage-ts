@@ -3,7 +3,7 @@ import { Toast } from "antd-mobile";
 
 const service = Axios.create({
   timeout: 15000,
-  baseURL: "/api",
+  baseURL: "/",
   headers: { ajax: "ajax" }
 });
 

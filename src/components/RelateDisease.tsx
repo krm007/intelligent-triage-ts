@@ -7,6 +7,7 @@ import { Button, Icon, Tag, WhiteSpace, WingBlank } from "antd-mobile";
 import { RouteComponentProps } from "react-router-dom";
 import { inject, observer } from "mobx-react";
 import { BgWordsAndSymptoms } from "../mobx/bgAndSymptoms";
+import { Pathname } from "history";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -84,7 +85,13 @@ class RelateDisease extends React.Component<Iprops> {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <Nav iconType={<Icon type="left" />} title={"智能分诊"} />
+        <Nav
+          iconType={<Icon type="left" />}
+          title={"智能分诊"}
+          click={() => {
+            this.props.history.replace("/");
+          }}
+        />
         {this.props.changeState ? (
           this.props.changeState.myData ? (
             <Bg
